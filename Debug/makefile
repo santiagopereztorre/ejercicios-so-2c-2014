@@ -26,7 +26,7 @@ endif
 all: incrementales
 
 dependents:
-	-cd /home/utnso/workspace/commons/Debug && $(MAKE) clean all
+	-cd /home/utnso/workspace/commons/Debug && $(MAKE) all
 
 # Tool invocations
 incrementales: $(OBJS) $(USER_OBJS) /home/utnso/workspace/commons/Debug/libcommons.so

@@ -18,21 +18,18 @@ void mostrar(void* elemento) {
 }
 
 int main(void) {
-	void (*punteroAFuncion)(void*)= &mostrar;
-	int opcion;
 	t_list* libros = list_create();
 	char* libroNuevo = malloc(sizeof(char) * 50);
 
-	list_add(libros, "uno");
-
 	while (true) {
+		int opcion;
 		printf("Elija una opcion\n0- Salir\n1- Listar libros\n2- Cargar un libro\n¿Que desea hacer': ");
 		scanf("%d", &opcion);
 		switch (opcion) {
 		case 0:
 			return EXIT_SUCCESS;
 		case 1:
-			list_iterate(libros, punteroAFuncion);
+			list_iterate(libros, &mostrar);
 			break;
 		case 2:
 			printf("¿Que libro quiere agregar?: ");

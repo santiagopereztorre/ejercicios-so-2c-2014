@@ -19,25 +19,28 @@ void mostrar(void* elemento) {
 
 int main(void) {
 	void (*punteroAFuncion)(void*)= &mostrar;
-	int opcion = 3;
+	int opcion;
 	t_list* libros = list_create();
+	char* libroNuevo = malloc(sizeof(char) * 50);
 
 	list_add(libros, "uno");
 
-	while (opcion) {
-		opcion = 3;
-		printf(
-				"Elija una opcion\n0- Salir\n1- Listar libros\n2- Cargar un libro\n¿Que desea hacer': ");
+	while (true) {
+		printf("Elija una opcion\n0- Salir\n1- Listar libros\n2- Cargar un libro\n¿Que desea hacer': ");
 		scanf("%d", &opcion);
-		if (opcion == 1) {
+		switch (opcion) {
+		case 0:
+			return EXIT_SUCCESS;
+		case 1:
 			list_iterate(libros, punteroAFuncion);
-		}
-		if (opcion == 2) {
-			char* libroNuevo = malloc(sizeof(char) * 50);
+			break;
+		case 2:
 			printf("¿Que libro quiere agregar?: ");
 			scanf("%s", libroNuevo);
 			list_add(libros, libroNuevo);
+			break;
 		}
 	}
+	free(libroNuevo);
 	return EXIT_SUCCESS;
 }

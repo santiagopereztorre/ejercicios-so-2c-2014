@@ -5,12 +5,13 @@
 struct Libro {
 	char nombre[20];
 	char isbn[13];
+	float precio;
+	int stock;
 };
 
 void mostrar2(void* elemento) {
 	struct Libro* libro = (struct Libro*) elemento;
-//	printf("%s, %s, %f, %i", libro.nombre, libro.isbn, libro.precio, libro.stock);
-	printf("%s, %s\n", libro->nombre, libro->isbn);
+	printf("%s, %s, %f, %d\n", libro->nombre, libro->isbn, libro->precio, libro->stock);
 }
 
 void mostrarLibro2(t_list* libros) {
@@ -23,10 +24,10 @@ void cargarLibro2(t_list* libros) {
 	scanf("%s", libro->nombre);
 	printf("¿Cual es el isbn quiere agregar?: ");
 	scanf("%s", libro->isbn);
-//	printf("¿Cual es el precio quiere agregar?: ");
-//	scanf("%f", libro->precio);
-//	printf("¿Cual es el stock quiere agregar?: ");
-//	scanf("%i", libro->stock);
+	printf("¿Cual es el precio quiere agregar?: ");
+	scanf("%f", &libro->precio);
+	printf("¿Cual es el stock quiere agregar?: ");
+	scanf("%d", &libro->stock);
 	list_add(libros, libro);
 }
 

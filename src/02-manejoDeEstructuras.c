@@ -9,16 +9,16 @@ struct Libro {
 	int stock;
 };
 
-void mostrar2(void* elemento) {
+void mostrar(void* elemento) {
 	struct Libro* libro = (struct Libro*) elemento;
 	printf("%s, %s, %f, %d\n", libro->nombre, libro->isbn, libro->precio, libro->stock);
 }
 
-void mostrarLibro2(t_list* libros) {
-	list_iterate(libros, &mostrar2);
+void mostrarLibro(t_list* libros) {
+	list_iterate(libros, &mostrar);
 }
 
-void cargarLibro2(t_list* libros) {
+void cargarLibro(t_list* libros) {
 	struct Libro* libro = malloc(sizeof(struct Libro));
 	printf("¿Que libro quiere agregar?: ");
 	scanf("%s", libro->nombre);
@@ -31,9 +31,9 @@ void cargarLibro2(t_list* libros) {
 	list_add(libros, libro);
 }
 
-int preguntarOpcion2(int opcion) {
+int preguntarOpcion(int opcion) {
 	printf(
-			"Elija una opcion\n0- Salir\n1- Listar libros\n2- Cargar un libro\n¿Que desea hacer': ");
+			"Elija una opcion\n0- Salir\n1- Listar libros\n2- Cargar un libro\n3- Quitar un libro\n¿Que desea hacer': ");
 	scanf("%d", &opcion);
 	return opcion;
 }
@@ -43,15 +43,18 @@ int main(void) {
 	int opcion;
 
 	while (true) {
-		opcion = preguntarOpcion2(opcion);
+		opcion = preguntarOpcion(opcion);
 		switch (opcion) {
 		case 0:
 			return EXIT_SUCCESS;
 		case 1:
-			mostrarLibro2(libros);
+			mostrarLibro(libros);
 			break;
 		case 2:
-			cargarLibro2(libros);
+			cargarLibro(libros);
+			break;
+		case 3:
+			printf("falta implementar\n");
 			break;
 		}
 	}

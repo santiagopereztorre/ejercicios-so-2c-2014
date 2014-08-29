@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <commons/collections/list.h>
 
 struct Libro {
@@ -30,6 +31,21 @@ void cargarLibro(t_list* libros) {
 	scanf("%d", &libro->stock);
 	list_add(libros, libro);
 }
+//
+//bool comparador(void* elemento) {
+//	struct Libro* libro = malloc(sizeof(struct Libro));
+//	if (strcmp(libro->nombre, "hola") == 1) {
+//		printf("true");
+//		return true;
+//	} else {
+//		printf("false");
+//		return false;
+//	}
+//}
+
+void quitarLibro(t_list* libros) {
+	printf("Falta implementar");
+}
 
 int preguntarOpcion(int opcion) {
 	printf(
@@ -54,7 +70,7 @@ int main(void) {
 			cargarLibro(libros);
 			break;
 		case 3:
-			printf("falta implementar\n");
+			quitarLibro(libros);
 			break;
 		}
 	}

@@ -33,7 +33,11 @@ void cargarLibro(t_list* libros) {
 	list_add(libros, libro);
 }
 
-void quitarLibro(t_list* libros, char* palabra) {
+void quitarLibro(t_list* libros) {
+	char palabra[20];
+
+	printf("¿Cual es el nombre del libro a quitar?: ");
+	scanf("%s", palabra);
 
 	bool comparador(struct Libro* libro) {
 		return string_equals_ignore_case(libro->nombre, palabra);
@@ -65,7 +69,7 @@ int main(void) {
 			cargarLibro(libros);
 			break;
 		case 3:
-			quitarLibro(libros, "hola");
+			quitarLibro(libros);
 			break;
 		}
 	}

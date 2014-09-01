@@ -49,8 +49,23 @@ void quitarLibro(t_list* libros) {
 	list_remove_and_destroy_by_condition(libros, (void*) comparador, (void*) libro_destroy);
 }
 
+void aumentarStock(t_list* libros) {
+	printf("Falta implementar");
+}
+
+void disminuirStock(t_list* libros) {
+	printf("Falta implementar");
+}
+
 int preguntarOpcion(int opcion) {
-	printf("Elija una opcion\n0- Salir\n1- Listar libros\n2- Cargar un libro\n3- Quitar un libro\n¿Que desea hacer': ");
+	printf("Elija una opcion\n"
+			"0- Salir\n"
+			"1- Listar libros\n"
+			"2- Cargar un libro\n"
+			"3- Quitar un libro\n"
+			"4- Aumentar stock\n"
+			"5- Disminuir stock\n"
+			"¿Que desea hacer': ");
 	scanf("%d", &opcion);
 	return opcion;
 }
@@ -72,6 +87,14 @@ int main(void) {
 			break;
 		case 3:
 			quitarLibro(libros);
+			break;
+		}
+		case 4:
+			aumentarStock(libros);
+			break;
+		}
+		case 5:
+			disminuirStock(libros);
 			break;
 		}
 	}

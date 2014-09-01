@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <commons/collections/list.h>
+#include <commons/string.h>
 
 struct Libro {
 	char nombre[20];
@@ -15,7 +16,7 @@ void mostrar(void* elemento) {
 	printf("%s, %s, %f, %d\n", libro->nombre, libro->isbn, libro->precio, libro->stock);
 }
 
-void mostrarLibro(t_list* libros) {
+void mostrarLibros(t_list* libros) {
 	list_iterate(libros, &mostrar);
 }
 
@@ -31,20 +32,13 @@ void cargarLibro(t_list* libros) {
 	scanf("%d", &libro->stock);
 	list_add(libros, libro);
 }
-//
-//bool comparador(void* elemento) {
-//	struct Libro* libro = malloc(sizeof(struct Libro));
-//	if (strcmp(libro->nombre, "hola") == 1) {
-//		printf("true");
-//		return true;
-//	} else {
-//		printf("false");
-//		return false;
-//	}
-//}
+
+bool comparador(struct Libro* libro) {
+	return string_equals_ignore_case(libro->nombre, "hola");
+}
 
 void quitarLibro(t_list* libros) {
-	printf("Falta implementar");
+	list_remove_by_condition(libros, (void*) comparador);
 }
 
 int preguntarOpcion(int opcion) {
@@ -64,7 +58,7 @@ int main(void) {
 		case 0:
 			return EXIT_SUCCESS;
 		case 1:
-			mostrarLibro(libros);
+			mostrarLibros(libros);
 			break;
 		case 2:
 			cargarLibro(libros);

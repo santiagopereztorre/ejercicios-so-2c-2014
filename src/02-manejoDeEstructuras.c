@@ -33,6 +33,10 @@ void cargarLibro(t_list* libros) {
 	list_add(libros, libro);
 }
 
+void libro_destroy(struct Libro *self) {
+    free(self);
+}
+
 void quitarLibro(t_list* libros) {
 	char palabra[20];
 
@@ -42,13 +46,6 @@ void quitarLibro(t_list* libros) {
 	bool comparador(struct Libro* libro) {
 		return string_equals_ignore_case(libro->nombre, palabra);
 	}
-
-	void libro_destroy(struct Libro *self) {
-	    free(self->nombre);
-	    free(self->isbn);
-	    free(self);
-	}
-
 	list_remove_and_destroy_by_condition(libros, (void*) comparador, (void*) libro_destroy);
 }
 
@@ -78,5 +75,6 @@ int main(void) {
 			break;
 		}
 	}
+	list_clean_and_destroy_elements(libros, (void*) libro_destroy);
 	return EXIT_SUCCESS;
 }

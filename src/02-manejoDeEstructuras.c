@@ -38,20 +38,21 @@ void libro_destroy(struct Libro *self) {
 }
 
 void quitarLibro(t_list* libros) {
-	char palabra[20];
+	char nombre[20];
 
 	printf("¿Cual es el nombre del libro a quitar?: ");
-	scanf("%s", palabra);
+	scanf("%s", nombre);
 
 	bool comparador(struct Libro* libro) {
-		return string_equals_ignore_case(libro->nombre, palabra);
+		return string_equals_ignore_case(libro->nombre, nombre);
 	}
+
 	list_remove_and_destroy_by_condition(libros, (void*) comparador, (void*) libro_destroy);
 }
 
 void aumentarStock(t_list* libros) {
-	char nombre[20] = "hola";
-	int cantidad = 5;
+	char nombre[20];
+	int cantidad;
 
 	printf("¿Cual es el nombre del libro a aumentar stock?: ");
 	scanf("%s", nombre);
@@ -59,12 +60,18 @@ void aumentarStock(t_list* libros) {
 	printf("¿Cuanto stock desea aumentar?: ");
 	scanf("%d", &cantidad);
 
-	printf("Falta implementar\n");
+	bool comparador(struct Libro* libro) {
+		return string_equals_ignore_case(libro->nombre, nombre);
+	}
+
+	struct Libro* libro = list_find(libros, (void*) comparador);
+
+	libro->stock = libro->stock + cantidad;
 }
 
 void disminuirStock(t_list* libros) {
-	char nombre[20] = "hola";
-	int cantidad = 5;
+	char nombre[20];
+	int cantidad;
 
 	printf("¿Cual es el nombre del libro a disminuir stock?: ");
 	scanf("%s", nombre);
@@ -72,7 +79,13 @@ void disminuirStock(t_list* libros) {
 	printf("¿Cuanto stock desea disminuir?: ");
 	scanf("%d", &cantidad);
 
-	printf("Falta implementar\n");
+	bool comparador(struct Libro* libro) {
+		return string_equals_ignore_case(libro->nombre, nombre);
+	}
+
+	struct Libro* libro = list_find(libros, (void*) comparador);
+
+	libro->stock = libro->stock - cantidad;
 }
 
 int preguntarOpcion(int opcion) {

@@ -50,11 +50,29 @@ void quitarLibro(t_list* libros) {
 }
 
 void aumentarStock(t_list* libros) {
-	printf("Falta implementar");
+	char nombre[20] = "hola";
+	int cantidad = 5;
+
+	printf("¿Cual es el nombre del libro a aumentar stock?: ");
+	scanf("%s", nombre);
+
+	printf("¿Cuanto stock desea aumentar?: ");
+	scanf("%d", &cantidad);
+
+	printf("Falta implementar\n");
 }
 
 void disminuirStock(t_list* libros) {
-	printf("Falta implementar");
+	char nombre[20] = "hola";
+	int cantidad = 5;
+
+	printf("¿Cual es el nombre del libro a disminuir stock?: ");
+	scanf("%s", nombre);
+
+	printf("¿Cuanto stock desea disminuir?: ");
+	scanf("%d", &cantidad);
+
+	printf("Falta implementar\n");
 }
 
 int preguntarOpcion(int opcion) {
@@ -88,11 +106,9 @@ int main(void) {
 		case 3:
 			quitarLibro(libros);
 			break;
-		}
 		case 4:
 			aumentarStock(libros);
 			break;
-		}
 		case 5:
 			disminuirStock(libros);
 			break;

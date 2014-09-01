@@ -43,12 +43,17 @@ void quitarLibro(t_list* libros) {
 		return string_equals_ignore_case(libro->nombre, palabra);
 	}
 
-	list_remove_by_condition(libros, (void*) comparador);
+	void libro_destroy(struct Libro *self) {
+	    free(self->nombre);
+	    free(self->isbn);
+	    free(self);
+	}
+
+	list_remove_and_destroy_by_condition(libros, (void*) comparador, (void*) libro_destroy);
 }
 
 int preguntarOpcion(int opcion) {
-	printf(
-			"Elija una opcion\n0- Salir\n1- Listar libros\n2- Cargar un libro\n3- Quitar un libro\n¿Que desea hacer': ");
+	printf("Elija una opcion\n0- Salir\n1- Listar libros\n2- Cargar un libro\n3- Quitar un libro\n¿Que desea hacer': ");
 	scanf("%d", &opcion);
 	return opcion;
 }
